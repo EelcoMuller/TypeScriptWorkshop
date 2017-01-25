@@ -57,9 +57,8 @@ In `tsconfig.json` moet er verwezen worden  naar es5 en commonjs:
 
 #### Inheritance
 
-Maak een class `Animal` en gebruik deze voor een `Dog` en `Cat`.
-
-Maak een methode `getType` en laat deze `Dog` of `Cat` teruggeven met daarachter de naam.
+- Maak een class `Animal` en gebruik deze voor een `Dog` en `Cat`.
+- Maak een methode `getType` en laat deze `Dog` of `Cat` teruggeven met daarachter de naam.
 
 #### Arrays
 
@@ -72,3 +71,14 @@ Maak een methode `getType` en laat deze `Dog` of `Cat` teruggeven met daarachter
 - Maak een array van auto’s en sorteer deze op maximum snelheid
   - hint : de sort functie heeft een car als input en geeft 1,0,-1 terug.
 - Maak een class race geef deze een methode die een lijst retourneert met een ranglijst dus op volgorde en de tijd die de auto achter loopt
+
+#### Opdracht: Stack
+
+- Maak een `Stack` data class met `push` en `pop` methodes
+- En nu de challenge: De `Stack` moet generiek zijn
+- Maak 2 stacks die om kunnen gaan met Animals en Auto's
+
+
+
+
+
