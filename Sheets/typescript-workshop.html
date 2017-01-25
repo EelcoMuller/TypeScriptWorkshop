@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>TypeScript workshop</title>
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/css/reveal.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/css/theme/black.min.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/lib/css/zenburn.min.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section>
+				<a href="https://www.typescriptlang.org/">
+			  <img width="378" style="padding: 30px;" data-src="https://www.typescriptlang.org/assets/images/logo_nocircle.svg" alt="Logo">
+</a>
+<h3>workshop</h3>
+<p>
+	<small>Created by <a href="eelco.muller@ordina.nl">Eelco Muller</a></small>
+</p>
+</section>
+
+<section>
+	<h2>Beforehand</h2>
+	<p>
+		Requirements:
+	</p>
+	<ul>
+		<li>Node: <a href="https://nodejs.org/en/">https://nodejs.org/en/</a></li>
+		<li>
+			IDE: <a href="https://www.jetbrains.com/webstorm/">WebStorm</a>,
+			<a href="https://www.jetbrains.com/idea/">Intellij</a>,
+			<a href="https://code.visualstudio.com/">Visual Studio Code</a>
+		</li>
+	</ul>
+</section>
+
+<section>
+	<h2>History</h2>
+	<p>
+		How did we get from JavaScript to TypeScript?
+	</p>
+</section>
+
+<section>
+	<h2>JavaScript</h2>
+	<ul>
+		<li>Developed by Netscape / Brendan Eich</li>
+		<li>1995</li>
+		<li>September - LiveScript</li>
+		<li>December - JavaScript</li>
+	</ul>
+</section>
+
+<section>
+	<h2>EcmaScript</h2>
+	<ul>
+		<li>Netscape asked Ecma International to create specification</li>
+		<li>Started in 1996, first release in 1997</li>
+		<li>First version of ECMAScript was based on JavaScript</li>
+		<li>All implementations are based on ECMAScript</li>
+		<li>Only defines Core of the language</li>
+		<li>DOM is maintained by W3C</li>
+	</ul>
+</section>
+
+<section>
+	<h2>TypeScript</h2>
+	<ul>
+		<li>Published in 2012</li>
+		<li>Anders Hejlberg
+			<ul>
+				<li>Lead architect for C#</li>
+				<li>Delphi en Turbo Pascal</li>
+				<li>ContributedTypeScript</li>
+			</ul>
+		</li>
+		<li>Made for large-scale apps</li>
+		<li>Superset of JavaScript
+			<ul>
+				<li>Existing JavaScript apps are TypeScript apps</li>
+			</ul>
+		</li>
+	</ul>
+</section>
+
+<section>
+	<h2>JavaScript</h2>
+	<p>Scope and "this"</p>
+</section>
+
+<section>
+	<h2>Scope</h2>
+	<ul>
+		<li>Java has block-level scoping</li>
+		<li>JavaScript has function-level scoping</li>
+		<li>Variables assigned in a function are not visible outside</li>
+		<li>A variable defined anywhere in a function is visible everywhere within the function</li>
+		<li>Also has impact on "this"</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Prototypes</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+function Person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eyecolor;
+}
+Person.prototype.name = function() {
+    return this.firstName + " " + this.lastName;
+};
+Person.prototype.getAge = function() {
+    return this.age;
+}
+	</code>
+	</pre>
+</section>
+
+<section>
+	<a href="https://www.typescriptlang.org/"><img width="378" style="padding: 30px;" data-src="https://www.typescriptlang.org/assets/images/logo_nocircle.svg" alt="Logo"></a>
+</section>
+
+<section>
+	<h2>TypeScript</h2>
+	<p>TypeScript is a superset of ES6</p>
+	<img data-src="https://qph.ec.quoracdn.net/main-qimg-b4ea5e4175b7ea1105895f131e9614cc" alt="overview typescript">
+</section>
+
+<section>
+	<h2>Features</h2>
+	<ul>
+		<li>Type annotations</li>
+		<li>Public/Private</li>
+		<li>Compile-time type checking</li>
+		<li>Type inference</li>
+		<li>Interfaces</li>
+	</ul>
+	<ul>
+		<li>Enums</li>
+		<li>Mixin</li>
+		<li>Generics</li>
+		<li>Optional properties</li>
+		<li>Tuple types</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Bottom Line</h2>
+	<ul>
+		<li>If you are used to Java and C#, you should feel at home in TypeScript</li>
+		<li>If you hate looking at Type information, you should not use TypeScript</li>
+		<li>If you believe in compile-time checking, use TypeScript</li>
+		<li>If you have problems with Type-related bugs in JavaScript, use TypeScript</li>
+		<li>If you are not goint to make use of Type annotations, just use ES6</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Advantages</h2>
+	<ul>
+		<li>Strongly typed</li>
+		<li>Code completion</li>
+		<li>Clear syntax</li>
+	</ul>
+</section>
+
+
+<section>
+	<h2>Object oriented</h2>
+	<ul>
+		<li>Classes and objects</li>
+		<li>Inheritance</li>
+		<li>Interfaces</li>
+		<li>Generics</li>
+		<li>private/public</li>
+		<li>Lambda's</li>
+		<li>Modules</li>
+	</ul>
+</section>
+
+<section id="variabletransition">
+	<h2>Variables</h2>
+	<p>No hoisting, Block scoped instead of function scoped</p>
+	<ul>
+		<li>`const`</li>
+		<li>`let`</li>
+	</ul>
+
+	<p class="fragment">No need for <b>var</b> anymore</p>
+</section>
+
+<section>
+	<h2>Example</h2>
+
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+function() {
+    console.log(x); 
+    // Uncaught ReferenceError: x is not defined
+  
+    if (true) {
+        let x = "test";
+    }
+}
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Example</h2>
+
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+function() {
+    const x = "x";
+    x = "something else"; 
+    // Uncaught TypeError: Assignment to constant variable
+   
+   const y = {y: 'y'};
+   y.y = 'x'; // this works
+}
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Types</h2>
+
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+//Boolean
+isDone: boolean = false;
+
+//Number
+decimal: number = 6;
+hex: number = 0xf00d; 
+binary: number = 0b1010; 
+octal: number = 0o744;
+
+//String
+color: string = "blue";
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Types</h2>
+
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+//Arrays
+list: Array&lt;number&gt; = [1, 2, 3];
+
+//Tuple
+let x: [string, number];
+x = ["hello", 10];
+
+//Enum
+enum Color {Red, Green, Blue};
+let c: Color = Color.Green;
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Types</h2>
+
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+// null, undefined, any
+const test: null = null, 
+      test2: undefined = undefined,
+	  test3: any: 4;
+
+//never
+function infiniteLoop(): never {
+    while (true) { }
+}
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Arrays</h2>
+
+	<ul>
+		<li>Array of classes: Arrays&lt;Person&gt;</li>
+		<li>Array.sort(function())</li>
+		<li>Array.reduce(function())</li>
+		<li>Array.slide()</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Arrays</h2>
+	<p>The best type will be infered on initialization</p>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+let x = [0, 1, 2]; // will be `Array&lt;number&gt;`
+
+let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()]; 
+      // Not needed
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Arrow functions</h2>
+	<p>Lambda's, anonymous inner classes</p>
+</section>
+
+<section>
+	<h2>Arrow functions</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+const evens = [1, 2, 3, 4]
+
+odds  = evens.map(v => v + 1);
+pairs = evens.map(v => ({ even: v, odd: v + 1 }));
+nums  = evens.map((v, i) => { return v + i;});
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Arrow functions</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+let myAdd: (x: number, y: number) => 
+   number = function(x: number, y: number): number { 
+      return x + y; 
+   };
+
+console.log(smartPhones.map(smartPhone => smartPhone.price))
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Functions</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+//Named function
+function add(x, y) {
+	return x + y;
+}
+
+//Anonymous function
+let myAdd = function(x, y) { return x + y;}
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Classes & Inheritance</h2>
+</section>
+
+<section>
+	<h2>Classes</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+class Shape {
+    constructor (id, x, y) {
+        this.id = id;
+        this.x = x; this.y = y;
+    }
+    size () {
+        return this.x * this.y; 
+    }
+}
+
+let square = new Shape('test', 3, 3)
+square.size();
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Classes</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+class Square extends Shape {
+    constructor (id, length) {
+        super(id, length, length);
+    }
+}
+
+new Square('test', 3).size();
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Interfaces</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+interface Point {
+   x: number;
+   y: number;
+}
+
+function printPoint(point: Point){
+   return point.x + ","+ point.y;
+}
+
+document.body.innerHTML = printPoint({ x: 10, y: 20 });
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Implementing Interfaces</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+interface ClockInterface { 
+	currentTime: Date; 
+	setTime(d: Date); 
+} 
+
+class Clock implements ClockInterface { 
+   currentTime: Date; 
+
+   setTime(d: Date) { 
+      this.currentTime = d; 
+   } 
+
+   constructor(h: number, m: number) { } 
+}
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Generics</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+function prepareFood&lt;T extends Person&gt;(cooker: T): string {
+
+   return cooker.prepareFood().typeOfFood;
+}
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Advanced Types</h2>
+	<ul>
+		<li>Intersection</li>
+		<li>Union</li>
+		<li>Instance of</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Intersection type</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+function extend&lt;T, U&gt;(first: T, second: U): T & U {
+    let result = &lt;T & U&gt;{};
+    for (let id in first) {
+        (&lt;any&gt;result)[id] = (&lt;any&gt;first)[id];
+    }
+    for (let id in second) {
+        if (!result.hasOwnProperty(id)) {
+            (&lt;any&gt;result)[id] = (&lt;any&gt;second)[id];
+        }
+    }
+    return result;
+}
+
+class Person {
+    constructor(public name: string) { }
+}
+interface Loggable {
+    log(): void;
+}
+class ConsoleLogger implements Loggable {
+    log() {
+        // ...
+    }
+}
+var jim = extend(new Person("Jim"), new ConsoleLogger());
+var n = jim.name;
+jim.log();
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Union type</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+function doSomething(something: string | number) {
+
+   if (typeof something === "number")
+      return Array(something + 1).join(" ");
+
+   if (typeof something === "string")
+      return something;
+}
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Union type</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+interface Bird { layEggs(); }
+
+interface Fish { swim(); layEggs(); }
+
+function getSmallPet(): Fish | Bird {
+    // ...
+}
+
+const pet = getSmallPet();
+pet.layEggs(); // okay
+pet.swim();    // errors
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Iterators</h2>
+</section>
+
+<section>
+	<h2>Difference `in` and `of`</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+let list = [4, 5, 6];
+
+for (let i in list) {
+   console.log(i); // "0", "1", "2",
+}
+
+for (let i of list) {
+   console.log(i); // "4", "5", "6"
+}
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>forEach with Lambda</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+[1, 2, 3].forEach(item => console.log(item));
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Modules</h2>
+	<p>exports</p>
+	<ul>
+		<li>By using the keyword `export` you can declare something for outside use.</li>
+		<li>Can also be done with an wildcard: `export * from "./validators";`</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Modules</h2>
+	<p>imports</p>
+	<ul>
+		<li>`import Entry from "./Entry"`</li>
+		<li>`Entry` can now be used in code</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Modules: Example</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+import { Component } from '@angular/core}
+
+@Component({  
+   selector: 'testing',   
+   template: '',  templateUrl: 'test.html'
+})
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Promises</h2>
+	<ul>
+		<li>Comparable to Java's `Future`</li>
+		<li>Useful for async operations
+			<ul><li>Helps escaping callback hell</li></ul>
+		</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Example</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+let asyncFunc = () => {
+   return new Promise( resolve => {
+      setTimeout(() => resolve(42), 200);
+   }
+}
+
+asyncFunc.then(result => console.log(result));
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Example</h2>
+	<pre>
+		<code class="hljs" data-trim contenteditable>
+let asyncFunc = () => 
+   new Promise( (resolve, error) => {
+     setTimeout(() => error(new Error(‘help’)), 42);
+   })
+
+asyncFunc()
+    .then(result => console.log(result))
+    .catch(err => console.error(err));
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h2>Libraries</h2>
+	<ul>
+		<li>There are a lot
+			<ul><li>MongoDb, HTTP, CDI, etc</li></ul>
+		</li>
+		<li>Can be found here -> <a href="https://github.com/DefinitelyTyped/DefinitelyTyped">https://github.com/DefinitelyTyped/DefinitelyTyped</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Unit testing</h2>
+	<ul>
+		<li>Can be done with tsUnit</li>
+		<li>It is a Project made by 1 person</li>
+		<li><a href="https://github.com/Steve-Fenton/tsUnit">https://github.com/Steve-Fenton/tsUnit</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Assignments</h2>
+	<ul>
+		<li>Documentation: <a href="http://www.typescriptlang.org/">http://www.typescriptlang.org/</a></li>
+		<li>Git: <a href="https://github.com/EelcoMuller/TypeScriptWorkshop/blob/master/Opdrachten/Workshop%20TypeScript.md">https://github.com/EelcoMuller/TypeScriptWorkshop</a></li>
+	</ul>
+</section>
+
+<!-- Example of nested vertical slides -->
+<section>
+	<section>
+		<h2>Vertical Slides</h2>
+		<p>Slides can be nested inside of each other.</p>
+		<p>Use the <em>Space</em> key to navigate through all slides.</p>
+		<br>
+		<a href="#" class="navigate-down">
+			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+		</a>
+	</section>
+	<section>
+		<h2>Basement Level 1</h2>
+		<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+	</section>
+	<section>
+		<h2>Basement Level 2</h2>
+		<p>That's it, time to go back up.</p>
+		<br>
+		<a href="#/2">
+							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
+</a>
+</section>
+</section>
+
+<section>
+	<h2>Slides</h2>
+	<p>
+		Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com"
+			target="_blank">http://slides.com</a>.
+	</p>
+</section>
+
+<section>
+	<h2>Point of View</h2>
+	<p>
+		Press <strong>ESC</strong> to enter the slide overview.
+	</p>
+	<p>
+		Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt +
+		click anywhere to zoom back out.
+	</p>
+</section>
+
+<section>
+	<h2>Touch Optimized</h2>
+	<p>
+		Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
+	</p>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+						## Markdown support
+
+						Write content using inline or external Markdown.
+						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+
+						```
+						<section data-markdown>
+						  ## Markdown support
+
+						  Write content using inline or external Markdown.
+						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+						</section>
+						```
+					</script>
+</section>
+
+<section>
+	<section id="fragments">
+		<h2>Fragments</h2>
+		<p>Hit the next arrow...</p>
+		<p class="fragment">... to step through ...</p>
+		<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+
+		<aside class="notes">
+			This slide has fragments which are also stepped through in the notes window.
+		</aside>
+	</section>
+	<section>
+		<h2>Fragment Styles</h2>
+		<p>There's different types of fragments, like:</p>
+		<p class="fragment grow">grow</p>
+		<p class="fragment shrink">shrink</p>
+		<p class="fragment fade-out">fade-out</p>
+		<p class="fragment fade-up">fade-up (also down, left and right!)</p>
+		<p class="fragment current-visible">current-visible</p>
+		<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
+	</section>
+</section>
+
+<section id="transitions">
+	<h2>Transition Styles</h2>
+	<p>
+		You can select from different transitions, like: <br>
+		<a href="?transition=none#/transitions">None</a> -
+		<a href="?transition=fade#/transitions">Fade</a> -
+		<a href="?transition=slide#/transitions">Slide</a> -
+		<a href="?transition=convex#/transitions">Convex</a> -
+		<a href="?transition=concave#/transitions">Concave</a> -
+		<a href="?transition=zoom#/transitions">Zoom</a>
+	</p>
+</section>
+
+<section id="themes">
+	<h2>Themes</h2>
+	<p>
+		reveal.js comes with a few themes built in: <br>
+		<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
+		<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
+</p>
+</section>
+
+<section>
+	<section data-background="#dddddd">
+		<h2>Slide Backgrounds</h2>
+		<p>
+			Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
+		</p>
+		<a href="#" class="navigate-down">
+			<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+		</a>
+	</section>
+	<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
+		<h2>Image Backgrounds</h2>
+		<pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
+	</section>
+	<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat"
+		data-background-size="100px">
+		<h2>Tiled Backgrounds</h2>
+		<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code>
+</pre>
+</section>
+<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm"
+	data-background-color="#000000">
+	<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+<h2>Video Backgrounds</h2>
+<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code>
+</pre>
+</div>
+</section>
+<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
+	<h2>... and GIFs!</h2>
+</section>
+</section>
+
+<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+	<h2>Background Transitions</h2>
+	<p>
+		Different background transitions are available via the backgroundTransition option. This one's called "zoom".
+	</p>
+	<pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
+</section>
+
+<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+	<h2>Background Transitions</h2>
+	<p>
+		You can override background transitions per-slide.
+	</p>
+	<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code>
+</pre>
+</section>
+
+<section>
+	<h2>Pretty Code</h2>
+	<pre><code class="hljs" data-trim contenteditable>
+function linkify( selector ) {
+  if( supports3DTransforms ) {
+
+    var nodes = document.querySelectorAll( selector );
+
+    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) {
+        node.className += ' roll';
+      }
+    }
+  }
+}
+					</code></pre>
+	<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+</section>
+
+<section>
+	<h2>Marvelous List</h2>
+	<ul>
+		<li>No order here</li>
+		<li>Or here</li>
+		<li>Or here</li>
+		<li>Or here</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Fantastic Ordered List</h2>
+	<ol>
+		<li>One is smaller than...</li>
+		<li>Two is smaller than...</li>
+		<li>Three!</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Tabular Tables</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Value</th>
+				<th>Quantity</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Apples</td>
+				<td>$1</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<td>Lemonade</td>
+				<td>$2</td>
+				<td>18</td>
+			</tr>
+			<tr>
+				<td>Bread</td>
+				<td>$3</td>
+				<td>2</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Clever Quotes</h2>
+	<p>
+		These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
+	</p>
+	<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+		&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would reproduce
+		the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
+	</blockquote>
+</section>
+
+<section>
+	<h2>Intergalactic Interconnections</h2>
+	<p>
+		You can link between slides internally,
+		<a href="#/2/3">like this</a>.
+	</p>
+</section>
+
+<section>
+	<h2>Speaker View</h2>
+	<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of
+		the upcoming slide as well as your speaker notes.</p>
+	<p>Press the <em>S</em> key to try it out.</p>
+
+	<aside class="notes">
+		Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes
+		window (hit 's' on your keyboard).
+	</aside>
+</section>
+
+<section>
+	<h2>Export to PDF</h2>
+	<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
+	<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0"
+		marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+</section>
+
+<section>
+	<h2>Global State</h2>
+	<p>
+		Set <code>data-state="something"</code> on a slide and <code>"something"</code> will be added as a class to the document
+		element when the slide is open. This lets you apply broader style changes, like switching the page background.
+	</p>
+</section>
+
+<section data-state="customevent">
+	<h2>State Events</h2>
+	<p>
+		Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
+	</p>
+	<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;"> Reveal.addEventListener( 'customevent', function() { console.log( '"customevent" has fired' ); } );
+</code>
+</pre>
+</section>
+
+<section>
+	<h2>Take a Moment</h2>
+	<p>
+		Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting
+		slides off the screen.
+	</p>
+</section>
+
+<section>
+	<h2>Much more</h2>
+	<ul>
+		<li>Right-to-left support</li>
+		<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
+		<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
+		<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
+		<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
+	</ul>
+</section>
+
+<section style="text-align: left;">
+<h1>THE END</h1>
+<p>
+	- <a href="http://slides.com">Try the online editor</a> <br> - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+</p>
+</section>
+
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/lib/js/head.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/js/reveal.js"></script>
+
+<script>
+					 Reveal.initialize({
+						 controls: false,
+						 keyboard: true,
+						 touch: true,
+						 progress: false,
+						 history: true,
+						 dependencies: [
+							 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/lib/js/classList.js', condition: function () { return !document.body.classList; } },
+							 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+							 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/plugin/markdown/markdown.min.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+							 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/plugin/highlight/highlight.min.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+							 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/plugin/zoom-js/zoom.min.js', async: true },
+							 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.0/plugin/notes/notes.min.js', async: true }
+						 ]
+					 });
+</script>
+</body>
+
+</html>
